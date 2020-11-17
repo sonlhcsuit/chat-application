@@ -1,0 +1,176 @@
+export const friendsList= [{
+    id:"01",
+    name:"Pikachu",
+    avtUrl:"https://image2.tienphong.vn/665x449/uploads/2017/11/5a185e28459b3-here-s-how-to-catch-pikachus-before-they-become-super-rare-in-pokemon-go-600x450.jpg",
+    lastMessage:"Pika pika",
+    inComming:true
+
+},
+{
+    id:"03",
+
+    name:"Charmander",
+    avtUrl:"https://i.pinimg.com/originals/69/14/48/691448a61b6a2aea18f0360212fa6b45.png",
+    lastMessage:"Hello",
+    inComming:true
+
+},
+{
+    id:"05",
+
+    name:"Bulbasaur",
+    avtUrl:"https://static.pokemonpets.com/images/monsters-images-300-300/1-Bulbasaur.png",
+    lastMessage:"bulb bulba",
+    inComming:true
+
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://i.pinimg.com/originals/b2/01/18/b201181cd337130bbec6d9f9f00a2932.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,
+]
+export const messageList = [{
+    userId:["01","02"],
+    message:[{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },
+    {
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    },{
+        content:"1111111111",
+        belongTo:"01"
+    },{
+        content:"2222222",
+        belongTo:"02"
+    },{
+        content:"3333333333",
+        belongTo:"01"
+    },{
+        content:"44444444",
+        belongTo:"02"
+    },{
+        content:"55555555555",
+        belongTo:"02"
+    }]
+}]

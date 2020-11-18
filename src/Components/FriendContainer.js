@@ -4,11 +4,14 @@ import { friendsList } from '../resources/data'
 export class FriendContainer extends React.Component {
     constructor(props) {
         super(props)
-        this.state = {friendsList:friendsList}
+        this.state = {}
+    }
+    componentWillMount(){
+        this.setState({friendsList:friendsList})
+
     }
     componentDidMount() {
         // this.setState({friendsList:friendsList})
-        console.log(this.state)
     }
 
     render() {

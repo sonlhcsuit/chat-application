@@ -1,0 +1,11 @@
+.sidebar-cont{
+    display: flex;
+}
+.searchbar-area{
+    width: 100%;
+    height: 10%;
+}
+.friendlist-area{
+    width: 100%;
+    height: 90%;
+}

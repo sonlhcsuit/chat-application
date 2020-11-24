@@ -1,7 +1,7 @@
 export const friendsList= [{
     id:"01",
     name:"Pikachu",
-    avtUrl:"https://image2.tienphong.vn/665x449/uploads/2017/11/5a185e28459b3-here-s-how-to-catch-pikachus-before-they-become-super-rare-in-pokemon-go-600x450.jpg",
+    avtUrl:"https://st.gamevui.com/images/image/2019/03/20/pikachu-200.jpg",
     lastMessage:"Pika pika",
     inComming:true
 
@@ -10,7 +10,7 @@ export const friendsList= [{
     id:"03",
 
     name:"Charmander",
-    avtUrl:"https://i.pinimg.com/originals/69/14/48/691448a61b6a2aea18f0360212fa6b45.png",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/004.png",
     lastMessage:"Hello",
     inComming:true
 
@@ -19,7 +19,7 @@ export const friendsList= [{
     id:"05",
 
     name:"Bulbasaur",
-    avtUrl:"https://static.pokemonpets.com/images/monsters-images-300-300/1-Bulbasaur.png",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/001.png",
     lastMessage:"bulb bulba",
     inComming:true
 
@@ -28,7 +28,79 @@ export const friendsList= [{
     id:"04",
 
     name:"Squirtle",
-    avtUrl:"https://i.pinimg.com/originals/b2/01/18/b201181cd337130bbec6d9f9f00a2932.png",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
+    lastMessage:"how about u?",
+    inComming:false
+}
+,{
+    id:"04",
+
+    name:"Squirtle",
+    avtUrl:"https://assets.pokemon.com/assets/cms2/img/pokedex/full/007.png",
     lastMessage:"how about u?",
     inComming:false
 }

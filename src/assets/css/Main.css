@@ -1,0 +1,8 @@
+.main-cont{
+    display: flex;
+    flex-direction: column;
+}
+.main-area {
+    height: 100%;
+    width: 80%;
+  }

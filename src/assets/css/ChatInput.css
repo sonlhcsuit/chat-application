@@ -2,3 +2,19 @@
     height: 5%;
     width: 100%;
 }
+.chat-input-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.chat-input-text{
+    height: 75%;
+    outline: none;
+    padding: 0 10px;
+    flex-grow: 1;
+    border-radius: 20px;
+    border: 1px solid lightgrey;
+}
+.chat-input-btn{
+    margin: 10px;
+}

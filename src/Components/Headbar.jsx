@@ -10,17 +10,18 @@ let data = {
 }
 export function Headbar() {
     return (
-        <div className="headbar-area border headbar-cont">
+        <div className="headbar-area  headbar-cont">
             <img className="headbar-avatar" src={data.avtUrl} />
-            <div className="headbar-title">
+            <div className="headbar-title ">
                 <h3>{data.name}</h3>
-                <p>last lastMessage</p>
+                <p> {data.lastMessage}</p>
             </div>
-            <div className="headbar-tools">
-                <i></i>
-                <i></i>
-                <i></i>
-                <i></i>
+
+            <div className="headbar-tools ">
+                <i className="fal fa-phone-alt fa-2x"></i>
+                <i className="fal fa-video fa-2x"></i>
+                <i className="fal fa-search fa-2x"></i>
+                <i className="fal fa-ellipsis-v fa-2x"></i>
 
             </div>
 

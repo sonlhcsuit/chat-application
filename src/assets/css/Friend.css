@@ -14,5 +14,6 @@
 }
 .selected{
     border: 0.5px solid lightgray;
-    background-color: lightgrey;
+    background-color: gray;
+    color: white;
 }

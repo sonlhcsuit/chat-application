@@ -1,7 +1,7 @@
 
 import React from 'react';
 import '../assets/css/SignIn.css'
-// import { login } from '../Controllers/TodoControllers'
+import { signIn } from '../Controllers/Controllers'
 
 export class SignIn extends React.Component {
     constructor(props) {
@@ -14,7 +14,16 @@ export class SignIn extends React.Component {
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSubmit() {
-        // login(this.state.username, this.state.password)
+        signIn(this.state.username, this.state.password)
+            .then((userInfo) => {
+                localStorage.setItem('userId', userInfo.id)
+                localStorage.setItem('avatar', userInfo.avatar)
+                localStorage.setItem('name', userInfo.name)
+                this.props.navigateToHome()
+            })
+            .catch(err => {
+                console.error(err)
+            })
     }
     handleChange(e, type) {
         if (type === 'password') this.setState({ password: e.target.value })

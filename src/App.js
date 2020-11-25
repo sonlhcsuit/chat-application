@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import { Component, Fragment } from 'react'
 import './App.css';
 import { Main } from './Components/Main'
@@ -9,26 +8,45 @@ import { ForgotPassword } from './Components/ForgotPassword'
 class App extends Component {
   constructor(props) {
     super(props)
-    let at = window.location.pathname.split('/')
-    at.shift()
     this.state = {
-      at: at[0] || 'signin'
+      at: 'signin'
     }
   }
-  navigateTo=(path)=>{
+  navigateTo = (path) => {
     window.location.assign(`${path}`)
   }
   componentDidMount() {
+    let at = window.location.pathname.split('/')
+    at.shift()
+    if (localStorage.getItem('userId') !== null) {
+      let userInfo = {
+        userId: localStorage.getItem('userId'),
+        avatar: localStorage.getItem('avatar'),
+        name: localStorage.getItem('name')
+      }
+      this.setState({ at: 'home', userInfo: userInfo })
+    } else {
+      if (at[0] === 'home') {
+        this.navigateTo('signin')
+        at[0] = ''
+      }
+      this.setState({
+        at: at[0] || 'signin'
+      })
+    }
   }
   render() {
+    console.log('render')
     let option = {
-      'signin': <SignIn navigateToForgotPassword={()=>this.navigateTo('forgot')} navigateToSignUp={()=>this.navigateTo('signup')} />,
-      'signup': <SignUp navigateToSignIn={()=>this.navigateTo('signin')} />,
-      'forgot': <ForgotPassword navigateToSignIn={()=>this.navigateTo('signin')} navigateToSignUp={()=>this.navigateTo('signup')} />,
-      'home': (<Fragment>
-        <SideBar />
-        <Main />
-      </Fragment>)
+      'signin': <SignIn navigateToHome={() => this.navigateTo('home')} navigateToForgotPassword={() => this.navigateTo('forgot')} navigateToSignUp={() => this.navigateTo('signup')} />,
+      'signup': <SignUp navigateToSignIn={() => this.navigateTo('signin')} />,
+      'forgot': <ForgotPassword navigateToSignIn={() => this.navigateTo('signin')} navigateToSignUp={() => this.navigateTo('signup')} />,
+      'home': (
+        <Fragment>
+          <SideBar userInfo={this.state.userInfo} />
+          <Main userInfo={this.state.userInfo} />
+        </Fragment>
+      )
     }
 
     return (

@@ -8,15 +8,16 @@ export class MessagesContainer extends React.Component {
         this.state = { messages: messageList[0] }
     }
     componentDidMount() {
-        console.log(this.state)
+        // console.log(this.state)
     }
     render() {
-        let mes = this.state.messages.message.map((mes,indx) => {
+        let mes = this.state.messages.message.map((mes, indx) => {
             return <Message belongTo={mes.belongTo} content={mes.content} key={indx} />
         })
         return (
             <div className="message-container-area ">
-                {mes}</div>
+                {mes}
+            </div>
         )
     }
 }

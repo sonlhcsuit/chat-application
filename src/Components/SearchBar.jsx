@@ -1,24 +1,26 @@
 import '../assets/css/SearchBar.css'
-
+import { signOut } from '../Controllers/Controllers'
 function Profile(props) {
+    let userInfo = props.userInfo
     return (
         <div className="profile-area">
-            <img className="thumb" src="https://st.gamevui.com/images/image/2019/03/20/pikachu-200.jpg" />
-            <h2>Mindx Chatt</h2>
+            <img className="thumb" src={userInfo.avatar || 'https://image.flaticon.com/icons/png/512/21/21104.png'} alt="avatar" />
+            <h2>Mindx Chat</h2>
+            <i className="fal fa-sign-out" style={{ cursor: 'pointer' }} onClick={signOut}></i>
         </div>
     )
 }
-function Search(props){
+function Search(props) {
     return (
         <div className="search-area">
-            <input type="text" placeholder="Search"/>
+            <input type="text" placeholder="Search" />
         </div>
     )
 }
 export function SearchBar(props) {
     return (
         <div className="searchbar-area">
-            <Profile />
+            <Profile userInfo={props.userInfo} />
             <Search />
         </div>
     )

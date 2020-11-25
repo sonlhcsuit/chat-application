@@ -11,11 +11,17 @@ class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      at: 'signin'
+      at: 'signin',
+      selectedConversation:null
     }
   }
   navigateTo = (path) => {
     window.location.assign(`${path}`)
+  }
+  selectConversation = (conversation) => {
+    console.log(conversation)
+    // console.log(conversation)
+    this.setState({ selectedConversation: conversation })
   }
   componentDidMount() {
     let at = window.location.pathname.split('/')
@@ -38,15 +44,14 @@ class App extends Component {
     }
   }
   render() {
-    console.log('render')
     let option = {
       'signin': <SignIn navigateToHome={() => this.navigateTo('home')} navigateToForgotPassword={() => this.navigateTo('forgot')} navigateToSignUp={() => this.navigateTo('signup')} />,
       'signup': <SignUp navigateToSignIn={() => this.navigateTo('signin')} />,
       'forgot': <ForgotPassword navigateToSignIn={() => this.navigateTo('signin')} navigateToSignUp={() => this.navigateTo('signup')} />,
       'home': (
         <Fragment>
-          <SideBar userInfo={this.state.userInfo} />
-          <Main userInfo={this.state.userInfo} />
+          <SideBar userInfo={this.state.userInfo} select={this.selectConversation}/>
+          <Main userInfo={this.state.userInfo} conversationInfo={this.state.selectedConversation}/>
         </Fragment>
       )
     }

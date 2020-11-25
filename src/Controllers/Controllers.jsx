@@ -16,11 +16,30 @@ export function signOut() {
 }
 export function getUserInfo(userId) {
     return db.collection('users').doc(userId).get().then(doc => {
-        return {userId:doc.id,...doc.data()}
+        return { userId: doc.id, ...doc.data() }
     }).catch(er => console.log(er))
 }
 
-export function getConversationsOf(userId) {
+export function getConversationOf(conversationId) {
+    // console.log(conversationId)
+    return db.collection('messages')
+        .where('conversationId', '==', conversationId)
+        // .orderBy('created','desc')
+        .get()
+        .then((vale) => {
+            let data = []
+            vale.forEach(val => {
+                data.push(val.data())
+            })
+            // sort by time
+            return data.sort((a, b) => a.created - b.created)
+        })
+        .catch(er => {
+            console.log(er.message)
+        })
+}
+
+export function getConversationsInfoOf(userId) {
     return db.collection('conversations').where('userIds', 'array-contains', userId).get()
         .then(docs => {
             let data = []
@@ -30,7 +49,9 @@ export function getConversationsOf(userId) {
                 target = target.replace(userId, '')
                 data.push({
                     conversationId: doc.id,
-                    target: target
+                    target: target,
+                    avatar:doc.data().avatar,
+                    name:doc.data().name
                 })
             })
             return data

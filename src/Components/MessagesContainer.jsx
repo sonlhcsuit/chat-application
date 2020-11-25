@@ -1,22 +1,45 @@
 import React from 'react'
 import '../assets/css/MessagesContainer.css'
-import { messageList } from '../resources/data'
 import { Message } from './Message'
+import { getConversationOf, } from '../Controllers/Controllers'
 export class MessagesContainer extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { messages: messageList[0] }
+        this.state = { messages: [], fetched: false }
+    }
+    getMessages = () => {
+        // console.log(this.props)
+        if (this.props.conversationInfo == null) return null
+        return getConversationOf(this.props.conversationInfo.conversationId)
+            .then(data => {
+                // console.log(data)
+                this.setState({ messages: data, fetched: true })
+            })
+    }
+    componentDidUpdate(prevProps) {
+        // console.log(prevProps.conversationInfo)
+        // console.log(this.props.conversationInfo)
+        if (JSON.stringify(prevProps.conversationInfo) != JSON.stringify(this.props.conversationInfo)) {
+            // console.log('????')
+            // console.log('////////')
+            this.getMessages()
+
+        }
     }
     componentDidMount() {
-        // console.log(this.state)
+        // console.log(this.props)
     }
+    // }conversationInfo={props.conversationInfp} userInfo={props.userInfo}
     render() {
-        let mes = this.state.messages.message.map((mes, indx) => {
-            return <Message belongTo={mes.belongTo} content={mes.content} key={indx} />
+        // console.log('render')
+        let messages = this.state.messages.map((message, indx) => {
+            // console.log(message.belongTo)
+            let blt = this.props.userInfo.userId === message.belongTo ? 'income' : 'outcome'
+            return <Message belongTo={blt} content={message.content} key={indx} />
         })
         return (
             <div className="message-container-area ">
-                {mes}
+                {messages}
             </div>
         )
     }

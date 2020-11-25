@@ -5,7 +5,7 @@ export function SideBar(props) {
     return (
         <div className="sidebar-area">
             <SearchBar userInfo={props.userInfo}/>
-            <ConversationList userInfo={props.userInfo}/>
+            <ConversationList userInfo={props.userInfo} select={props.select}/>
         </div>
     )
 }

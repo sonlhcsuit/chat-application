@@ -1,4 +1,4 @@
-import { MessagesContainer } from './MessagesContainer'
+
 import { ChatInput } from './ChatInput'
 import { ConversationContent } from './ConversationContent'
 import { Headbar } from './Headbar'
@@ -10,12 +10,12 @@ import React from 'react'
 
 
 
-export function Main() {
+export function Main(props) {
     return (
         <div className="main-area main-cont ">
-            <Headbar />
-            < ConversationContent/>
-            <ChatInput />
+            <Headbar conversationInfo={props.conversationInfo}/>
+            <ConversationContent conversationInfo={props.conversationInfo} userInfo={props.userInfo} />
+            <ChatInput conversationInfo={props.conversationInfo} userInfo={props.userInfo} />
         </div>
 
     )

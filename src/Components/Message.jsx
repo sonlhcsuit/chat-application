@@ -1,7 +1,7 @@
 import '../assets/css/Message.css'
 export function Message(props) {
     return (
-        <div className={props.belongTo == "02" ? "income" : "outcome"}>
+        <div className={props.belongTo}>
             <p >{props.content}</p>
         </div>
     )

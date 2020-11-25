@@ -11,8 +11,8 @@ export class MessagesContainer extends React.Component {
         console.log(this.state)
     }
     render() {
-        let mes = this.state.messages.message.map(mes => {
-            return <Message belongTo={mes.belongTo} content={mes.content} />
+        let mes = this.state.messages.message.map((mes,indx) => {
+            return <Message belongTo={mes.belongTo} content={mes.content} key={indx} />
         })
         return (
             <div className="message-container-area ">

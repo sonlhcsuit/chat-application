@@ -1,0 +1,53 @@
+.signin-area {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: #55585c;
+    /* background-color: red; */
+    color: white;
+}
+.signin-comp {
+    width: 30%;
+    height: 10%;
+    display: flex;
+    flex-direction: column;
+    /* flex-direction: row; */
+}
+.signin-comp.title {
+    width: 30%;
+    height: 20%;
+    font-size: 35px;
+}
+
+.signin-comp > label {
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: white!important;
+}
+.signin-comp > input {
+    width: 100%;
+    /* height: 30%; */
+    font-size: 20px;
+    padding: 5px;
+    outline: none;
+    border: none;
+    border-radius: 10px;
+    background-color: #9da1a6;
+    color: white;
+}
+.signin-comp>input[type="button"] {
+    background-color: #9da1a6!important;
+    color: white!important;
+}
+
+.signin-comp.opt {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    font-style: italic;
+}
+.signin-comp > small {
+    cursor: pointer;
+}

@@ -19,7 +19,7 @@ class App extends Component {
     window.location.assign(`${path}`)
   }
   selectConversation = (conversation) => {
-    console.log(conversation)
+    // console.log(conversation)
     // console.log(conversation)
     this.setState({ selectedConversation: conversation })
   }

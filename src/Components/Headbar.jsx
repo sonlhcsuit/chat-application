@@ -2,7 +2,12 @@ import '../assets/css/Headbar.css'
 // avatar of opposite
 
 export function Headbar(props) {
-    let {avatar,name} = props.conversationInfo
+    let avatar,name
+    if(props.conversationInfo){
+        avatar = props.conversationInfo.avatar
+        name = props.conversationInfo.name
+        // let {avatar,name} = 
+    }
     return (
         <div className="headbar-area  headbar-cont">
             <img className="headbar-avatar" src={avatar} />

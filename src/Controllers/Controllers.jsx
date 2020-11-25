@@ -10,6 +10,16 @@ try {
 }
 
 const db = firebase.firestore()
+
+export function sendMessage(message) {
+    return db.collection('messages').add(message).then(doc => {
+        console.log('sent')
+    })
+        .catch(er => {
+            console.log(er)
+        })
+}
+
 export function signOut() {
     localStorage.clear()
     window.location.reload(false)
@@ -50,8 +60,8 @@ export function getConversationsInfoOf(userId) {
                 data.push({
                     conversationId: doc.id,
                     target: target,
-                    avatar:doc.data().avatar,
-                    name:doc.data().name
+                    avatar: doc.data().avatar,
+                    name: doc.data().name
                 })
             })
             return data

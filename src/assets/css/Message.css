@@ -1,9 +1,24 @@
-.sender{
-    float: left;
-    clear: right;
-    
+.message{
+    display: block;
 }
-.receiver{
-    float: right;
-    clear: left;
+.income{
+
+    /* border: 1px solid red; */
+    border-radius: 10px;
+    color: white;
+    max-width: 40%;
+    padding: 5px;
+    background-color:#328cfc ;
+
+    margin: 5px 20px 5px auto;
+}
+.outcome{
+    /* border: 1px solid red; */
+    border-radius: 10px;
+    color: white;
+    max-width: 40%;
+    padding: 5px;
+    margin: 5px auto 5px 20px;
+    background-color:#328cfc ;
+
 }

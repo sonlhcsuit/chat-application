@@ -18,10 +18,10 @@ export function Headbar() {
             </div>
 
             <div className="headbar-tools ">
-                <i className="fal fa-phone-alt fa-2x"></i>
-                <i className="fal fa-video fa-2x"></i>
-                <i className="fal fa-search fa-2x"></i>
-                <i className="fal fa-ellipsis-v fa-2x"></i>
+                <i className="fas fa-phone-alt "></i>
+                <i className="fas fa-video "></i>
+                <i className="fas fa-search "></i>
+                <i className="fas fa-ellipsis-v "></i>
 
             </div>
 

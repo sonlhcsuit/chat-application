@@ -1,7 +1,7 @@
 .sidebar-area {
     height: 100%;
     width: 20%;
-    background-color: lightgray;
+    background-color: #55585c;
 }
 .sidebar-cont {
     display: flex;

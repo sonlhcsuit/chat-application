@@ -12,7 +12,7 @@ import React from 'react'
 
 export function Main() {
     return (
-        <div className="main-area main-cont border">
+        <div className="main-area main-cont ">
             <Headbar />
             <Conversation />
             <ChatInput />

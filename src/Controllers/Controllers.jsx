@@ -10,10 +10,62 @@ try {
 }
 
 const db = firebase.firestore()
-export function signOut(){
+export function signOut() {
     localStorage.clear()
     window.location.reload(false)
 }
+export function getUserInfo(userId) {
+    return db.collection('users').doc(userId).get().then(doc => {
+        return {userId:doc.id,...doc.data()}
+    }).catch(er => console.log(er))
+}
+
+export function getConversationsOf(userId) {
+    return db.collection('conversations').where('userIds', 'array-contains', userId).get()
+        .then(docs => {
+            let data = []
+            docs.forEach(doc => {
+                let conversation = doc.data()
+                let target = conversation.userIds.join('')
+                target = target.replace(userId, '')
+                data.push({
+                    conversationId: doc.id,
+                    target: target
+                })
+            })
+            return data
+        })
+        .catch(er => {
+            console.error(er)
+        })
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 export function signIn(username, password) {
     return new Promise((resolve, reject) => {
         db.collection('users')

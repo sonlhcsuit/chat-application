@@ -1,3 +1,4 @@
+
 export const friendsList= [{
     id:"01",
     name:"Pikachu",

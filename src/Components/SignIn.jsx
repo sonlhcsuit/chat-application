@@ -31,7 +31,7 @@ export class SignIn extends React.Component {
     }
     render() {
         return (
-            <form className="signin-area">
+            <form className="signin-area" onKeyDown={(e) => { if (e.key == 'Enter') this.handleSubmit() }}>
                 <div className="signin-comp title">
                     <h1>Sign In</h1>
                 </div>
@@ -54,7 +54,7 @@ export class SignIn extends React.Component {
                     </small>
                 </div>
                 <div className="signin-comp">
-                    <input type="button" value="Sign In" onClick={this.handleSubmit} />
+                    <input type="button" value="Sign In" onClick={this.handleSubmit}  />
 
                 </div>
             </form >

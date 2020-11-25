@@ -5,6 +5,8 @@ import { SideBar } from './Components/SideBar'
 import { SignIn } from './Components/SignIn'
 import { SignUp } from './Components/SignUp'
 import { ForgotPassword } from './Components/ForgotPassword'
+// import { getFriends }from './Controllers/Controllers'
+// getFriends()
 class App extends Component {
   constructor(props) {
     super(props)

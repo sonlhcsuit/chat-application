@@ -1,6 +1,6 @@
 import '../assets/css/ChatInput.css'
 import { Component } from 'react'
-import { sendMessage} from '../Controllers/Controllers'
+import { sendMessage } from '../Controllers/Controllers'
 //where you enter text
 export class ChatInput extends Component {
     constructor(props) {
@@ -13,13 +13,16 @@ export class ChatInput extends Component {
         // console.log(destination)
         if (e.key == 'Enter') {
             let message = {
-                created:new Date().valueOf(),
-                belongTo:destination,
-                content:e.target.value,
-                type:'text',
-                conversationId:this.props.conversationInfo.conversationId
+                created: new Date().valueOf(),
+                belongTo: destination,
+                content: e.target.value,
+                type: 'text',
+                conversationId: this.props.conversationInfo.conversationId
             }
             sendMessage(message)
+                .then(() => {
+                    this.setState({ content: '' })
+                })
         }
         else {
             this.setState({ content: e.target.value })
@@ -27,7 +30,6 @@ export class ChatInput extends Component {
         }
     }
     render() {
-        console.log(this.state)
         return (
             <div className="chat-input-area chat-input-cont">
                 <i className="fas fa-plus chat-input-btn"></i>

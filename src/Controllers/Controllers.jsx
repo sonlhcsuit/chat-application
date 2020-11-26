@@ -13,13 +13,26 @@ const db = firebase.firestore()
 
 export function sendMessage(message) {
     return db.collection('messages').add(message).then(doc => {
-        console.log('sent')
+        console.log(doc.id)
     })
         .catch(er => {
             console.log(er)
         })
 }
-
+export function subscribeConversation(conversationId, callback) {
+    console.log(conversationId)
+    // let b = 0
+    return db.collection('messages').where('conversationId', '==', conversationId)
+        .onSnapshot(snapshot => {
+            snapshot.docChanges().forEach(change => {
+                if (change.type === 'added') {
+                    // b+=1
+                    // console.log(b)
+                    callback(change.doc.data())
+                }
+            })
+        })
+}
 export function signOut() {
     localStorage.clear()
     window.location.reload(false)

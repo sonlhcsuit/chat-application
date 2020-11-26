@@ -19,6 +19,7 @@ export class ChatInput extends Component {
                 type: 'text',
                 conversationId: this.props.conversationInfo.conversationId
             }
+            // clear input chat
             sendMessage(message)
                 .then(() => {
                     this.setState({ content: '' })

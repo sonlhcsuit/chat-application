@@ -15,14 +15,18 @@ class App extends Component {
       selectedConversation:null
     }
   }
+  // navigate to page
   navigateTo = (path) => {
     window.location.assign(`${path}`)
   }
+  // using to load content of selected conversation
+  // only save infomation about conversation
   selectConversation = (conversation) => {
     // console.log(conversation)
     // console.log(conversation)
     this.setState({ selectedConversation: conversation })
   }
+  // Mounted, then navigate to home (if user has logged in) or sign in 
   componentDidMount() {
     let at = window.location.pathname.split('/')
     at.shift()
@@ -44,6 +48,7 @@ class App extends Component {
     }
   }
   render() {
+    // routing 
     let option = {
       'signin': <SignIn navigateToHome={() => this.navigateTo('home')} navigateToForgotPassword={() => this.navigateTo('forgot')} navigateToSignUp={() => this.navigateTo('signup')} />,
       'signup': <SignUp navigateToSignIn={() => this.navigateTo('signin')} />,

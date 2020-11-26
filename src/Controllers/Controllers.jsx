@@ -10,15 +10,15 @@ try {
 }
 
 const db = firebase.firestore()
-
 export function sendMessage(message) {
     return db.collection('messages').add(message).then(doc => {
-        console.log(doc.id)
+        return doc.id
     })
         .catch(er => {
             console.log(er)
         })
 }
+// listen query realtime
 export function subscribeConversation(conversationId, callback) {
     console.log(conversationId)
     // let b = 0
@@ -33,6 +33,7 @@ export function subscribeConversation(conversationId, callback) {
             })
         })
 }
+//sign out function
 export function signOut() {
     localStorage.clear()
     window.location.reload(false)

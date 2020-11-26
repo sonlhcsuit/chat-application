@@ -11,6 +11,7 @@ import React from 'react'
 
 
 export function Main(props) {
+    // pass infomation about users and current conversation
     return (
         <div className="main-area main-cont ">
             <Headbar conversationInfo={props.conversationInfo}/>

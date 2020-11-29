@@ -1,7 +1,6 @@
-// import 'firebase/auth'
 import firebase from 'firebase/app'
 import 'firebase/firestore'
-import { firebaseConfig } from '../firebase.config'
+import { firebaseConfig } from '../config/firebase.config'
 
 try {
     firebase.initializeApp(firebaseConfig)

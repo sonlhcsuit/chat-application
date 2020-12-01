@@ -99,17 +99,6 @@ export function getConversationsInfoOf(userId) {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 export function signIn(username, password) {
     return new Promise((resolve, reject) => {
         db.collection('users')

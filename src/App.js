@@ -5,8 +5,6 @@ import { SideBar } from './Components/SideBar'
 import { SignIn } from './Components/SignIn'
 import { SignUp } from './Components/SignUp'
 import { ForgotPassword } from './Components/ForgotPassword'
-// import { getFriends }from './Controllers/Controllers'
-// getFriends()
 class App extends Component {
   constructor(props) {
     super(props)
@@ -69,3 +67,33 @@ class App extends Component {
   }
 }
 export default App;
+
+// --------------------------------------------------//
+
+// import { Component } from 'react'
+// class App extends Component {
+//   constructor(props) {
+//     super(props)
+//     this.state = { time: 0 }
+//   }
+//   click = () => {
+//     // this.setState({
+//     //   time:this.state.time+1
+//     // })
+//     this.setState((old) => {
+      
+//       old.time += 1
+//       console.log(old)
+//       this.forceUpdate()
+//     },()=>{
+//       console.log('yeys')
+//     })
+//   }
+//   render() {
+//     console.log('render')
+//     return (
+//       <input onClick={this.click} value={`you clicked me ${this.state.time} times`} type="button" />
+//     )
+//   }
+// }
+// export default App

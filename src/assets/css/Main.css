@@ -1,7 +1,7 @@
 .main-cont{
     display: flex;
     flex-direction: column;
-    background-color: #161718;
+    background-color: black;
 }
 .main-area {
     height: 100%;

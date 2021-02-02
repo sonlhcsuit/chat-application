@@ -10,7 +10,7 @@ class App extends Component {
     super(props)
     this.state = {
       at: 'signin',
-      selectedConversation:null
+      selectedConversation: null
     }
   }
   // navigate to page
@@ -20,8 +20,6 @@ class App extends Component {
   // using to load content of selected conversation
   // only save infomation about conversation
   selectConversation = (conversation) => {
-    // console.log(conversation)
-    // console.log(conversation)
     this.setState({ selectedConversation: conversation })
   }
   // Mounted, then navigate to home (if user has logged in) or sign in 
@@ -53,15 +51,17 @@ class App extends Component {
       'forgot': <ForgotPassword navigateToSignIn={() => this.navigateTo('signin')} navigateToSignUp={() => this.navigateTo('signup')} />,
       'home': (
         <Fragment>
-          <SideBar userInfo={this.state.userInfo} select={this.selectConversation}/>
-          <Main userInfo={this.state.userInfo} conversationInfo={this.state.selectedConversation}/>
+          <SideBar userInfo={this.state.userInfo} select={this.selectConversation} />
+          <Main userInfo={this.state.userInfo} conversationInfo={this.state.selectedConversation} />
         </Fragment>
       )
     }
 
     return (
       <div className="container row">
-        {option[this.state.at]}
+        {
+          option[this.state.at]
+        }
       </div>
     )
   }

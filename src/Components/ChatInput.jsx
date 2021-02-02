@@ -7,8 +7,7 @@ export class ChatInput extends Component {
         super(props)
         this.state = { content: '' }
     }
-
-    handleChange = (e) => {
+    handleEnter = (e) => {
         let destination = this.props.userInfo.userId
         // console.log(destination)
         if (e.key == 'Enter') {
@@ -24,19 +23,18 @@ export class ChatInput extends Component {
                 .then(() => {
                     this.setState({ content: '' })
                 })
-        }
-        else {
-            this.setState({ content: e.target.value })
 
         }
+    }
+    handleChange = (e) => {
+        this.setState({ content: e.target.value })
     }
     render() {
         return (
             <div className="chat-input-area chat-input-cont">
                 <i className="fas fa-plus chat-input-btn"></i>
-                <input type="text" className="chat-input-text" placeholder="Enter your message" onKeyDown={this.handleChange} />
+                <input type="text" value={this.state.content} className="chat-input-text" placeholder="Enter your message" onChange={this.handleChange} onKeyDown={this.handleEnter} />
                 <i className="fas fa-paper-plane chat-input-btn"></i>
-
             </div>
         )
     }

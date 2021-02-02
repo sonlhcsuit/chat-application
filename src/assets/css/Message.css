@@ -1,24 +1,19 @@
 .message{
     display: block;
-}
-.income{
-
-    /* border: 1px solid red; */
-    border-radius: 10px;
     color: white;
     max-width: 40%;
-    padding: 5px;
-    background-color:#328cfc ;
-
+    padding: 5px 10px;
+}
+.outcome{  
+    border-radius: 10px 10px 0px 10px / 10px 10px 0px 10px;
+    background-color: #0fafee;
     margin: 5px 20px 5px auto;
 }
-.outcome{
-    /* border: 1px solid red; */
-    border-radius: 10px;
-    color: white;
-    max-width: 40%;
-    padding: 5px;
+.income{
+    border-radius: 10px 10px 10px 0px / 10px 10px 10px 0px;
+    background-color:#f0f0f0 ;
     margin: 5px auto 5px 20px;
-    background-color:#328cfc ;
+    color: black;
+
 
 }

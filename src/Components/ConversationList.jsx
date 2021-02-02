@@ -1,6 +1,6 @@
 import React from 'react'
 import { Conversation } from './Conversation'
-import { getConversationsInfoOf, getUserInfo } from '../Controllers/Controllers'
+import { getConversationsInfoOf, getUserInfo, getConversationsAndParticipants } from '../Controllers/Controllers'
 import '../assets/css/ConversationList.css'
 export class ConversationList extends React.Component {
     constructor(props) {
@@ -9,32 +9,13 @@ export class ConversationList extends React.Component {
         this.select = this.select.bind(this)
     }
     componentDidMount() {
+        getConversationsAndParticipants(this.props.userInfo.userId)
+            .then(convers => {
+                this.setState({
+                    conversationList: convers
+                })
+            })
 
-        getConversationsInfoOf(this.props.userInfo.userId)
-            .then(async conversations => {
-                let targets = conversations.map(conversation => {
-                    return getUserInfo(conversation.target)
-                })
-                return Promise.all(targets).then(tars => {
-                    return tars.map((tar, indx) => {
-                        // console.log(tar)
-                        return {
-                            userId: tar.userId,
-                            avatar: tar.avatar,
-                            name: tar.name,
-                            conversationId: conversations[indx].conversationId
-                        }
-                    })
-                })
-            })
-            .then(data => {
-                // console.log(data)
-                this.setState((oldState) => {
-                    return { conversationList: data }
-                },()=>{
-                    this.select(0)
-                })
-            })
     }
     select(indx) {
         this.props.select(this.state.conversationList[indx])
@@ -44,7 +25,13 @@ export class ConversationList extends React.Component {
     render() {
         let conversations = this.state.conversationList.map((conversation, indx) => {
             return (
-                <Conversation key={indx} name={conversation.name} image={conversation.avatar} lastmes="12 hours ago" selected={indx === this.state.selected} select={() => this.select(indx)} />
+                <Conversation key={indx}
+                    user={this.props.userInfo.userId}
+                    id={conversation.conversationId}
+                    name={conversation.participants.name}
+                    image={conversation.participants.avatar} lastmes="12 hours ago"
+                    selected={indx === this.state.selected} select={() => this.select(indx)}
+                />
             )
         })
         return (

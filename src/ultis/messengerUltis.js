@@ -27,7 +27,7 @@ export function sendMessage(message) {
 
 
 
-export function getConversationOf(conversationId) {
+export function getConversation(conversationId) {
     // console.log(conversationId)
     return db.collection('messages')
         .where('conversationId', '==', conversationId)

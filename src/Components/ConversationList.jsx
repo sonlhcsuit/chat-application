@@ -5,16 +5,28 @@ import '../assets/css/ConversationList.css'
 export class ConversationList extends React.Component {
     constructor(props) {
         super(props)
-        this.state = { selected: 0, conversationList: [] }
+        this.state = {
+            selected: 0,
+            conversationList: [],
+            isSubscribed: false
+
+        }
         this.select = this.select.bind(this)
     }
-    componentDidMount() {
-        getConversationsAndParticipants(this.props.userInfo.userId)
-            .then(convers => {
-                this.setState({
-                    conversationList: convers
+    componentDidUpdate() {
+        const loggedUser = this.props.user
+
+        if (loggedUser && !this.state.isSubscribed) {
+            getConversationsAndParticipants(loggedUser.id)
+                .then(convers => {
+                    console.log(convers)
+                    this.setState({
+                        conversationList: convers,
+                        isSubscribed: true
+                    })
                 })
-            })
+        }
+
 
     }
     select(indx) {
@@ -23,10 +35,11 @@ export class ConversationList extends React.Component {
         this.setState({ selected: indx })
     }
     render() {
+        const loggedUser = this.props.user
         let conversations = this.state.conversationList.map((conversation, indx) => {
             return (
                 <Conversation key={indx}
-                    user={this.props.userInfo.userId}
+                    user={loggedUser.userId}
                     id={conversation.conversationId}
                     name={conversation.participants.name}
                     image={conversation.participants.avatar} lastmes="12 hours ago"

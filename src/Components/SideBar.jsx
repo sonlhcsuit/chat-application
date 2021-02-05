@@ -7,8 +7,8 @@ export function SideBar(props) {
     // 'select' func used to select specific conversation
     return (
         <div className="sidebar-area">
-            <SearchBar userInfo={props.userInfo}/>
-            <ConversationList userInfo={props.userInfo} select={props.select}/>
+            <SearchBar user={props.user}/>
+            <ConversationList user={props.user}/>
         </div>
     )
 }

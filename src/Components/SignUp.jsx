@@ -1,4 +1,4 @@
-import {Component,Fragment} from 'react';
+import { Component, Fragment } from 'react';
 import '../assets/css/SignUp.css'
 import { signUpUltis } from '../ultis/userUltis'
 import { Modal } from './Modal'
@@ -24,11 +24,11 @@ export class SignUp extends Component {
             signUpUltis(this.state)
                 .then(id => {
                     console.log(id)
-                    this.setState({notifMessage:'Sign up successful!'})
+                    this.setState({ notifMessage: 'Sign up successful!' })
 
                 })
                 .catch(error => {
-                    this.setState({notifMessage:error.message})
+                    this.setState({ notifMessage: error.message })
 
                 })
         } catch (error) {
@@ -54,7 +54,12 @@ export class SignUp extends Component {
     }
     render() {
         const modal = this.state.notifMessage ?
-            <Modal cancel={() => this.setState({ notifMessage: '' })}>
+            <Modal cancel={() => {
+                this.setState({ notifMessage: '' })
+                // navigate to sign in after sign up
+                window.history.pushState(null, null, '/signin')
+                window.dispatchEvent(new PopStateEvent('popstate'))
+            }}>
                 <p>
                     {this.state.notifMessage}
                 </p>
@@ -94,7 +99,7 @@ export class SignUp extends Component {
                         </div>
                         <Link path="/signin">
                             <p>
-                            Sign In
+                                Sign In
                             </p>
                         </Link>
                     </div>

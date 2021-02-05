@@ -1,10 +1,10 @@
-import { Component, Fragment, createContext } from 'react'
+import { Component, Fragment } from 'react'
 import './App.css';
 import { Main } from './Components/Main'
 import { SideBar } from './Components/SideBar'
 import { SignIn } from './Components/SignIn'
 import { SignUp } from './Components/SignUp'
-import { ForgotPassword } from './Components/ForgotPassword'
+// import { ForgotPassword } from './Components/ForgotPassword' 
 import { PathContext } from './Context/PathContext'
 
 
@@ -16,11 +16,13 @@ class App extends Component {
     super(props)
     // if user are not logged, navigate to /signin
     let path = window.location.pathname
-    console.log(path)
+    const user = JSON.parse(localStorage.getItem('user')) || {}
+
     if (availableRoute.indexOf(path) === -1) path = '/'
+
     switch (path) {
       case '/signin':
-        if (this.isLoggedIn()) path = '/'
+        if (this.isLoggedIn())path = '/'
         break;
       case '/':
         if (!this.isLoggedIn()) path = '/signin'
@@ -28,26 +30,28 @@ class App extends Component {
       default:
         break;
     }
-    if (path != window.location.pathname) window.history.pushState(null,null,path)
+
+    if (path != window.location.pathname) window.history.pushState(null, null, path)
+    
     this.state = {
       path: path,
-      // user: user.name,
-      user: {},
-      selectedConversation: null,
+      user: user,
       navigate: this.navigate,
-      setUser:this.setUser,
+      setUser: this.setUser,
     }
   }
-  setUser=(user)=>{
-    this.setState({user:user})
+
+  setUser = (user) => {
+    this.setState({ user: user })
   }
+  
   navigate = (path) => {
     window.history.pushState(null, null, path)
     window.dispatchEvent(new PopStateEvent('popstate'))
   }
+  
   isLoggedIn() {
-    const user = localStorage.getItem('user')
-    return user
+    return localStorage.getItem('user')
   }
   componentDidMount() {
     // set up routing
@@ -55,10 +59,9 @@ class App extends Component {
       e.preventDefault()
       this.setState({ path: window.location.pathname })
     })
-    
+
   }
-  // and fetching data from here
-  // if (localStorage.getItem('user') !== null) this.setState({ user: JSON.parse(localStorage.getItem('user')) })
+
   render() {
 
     let path = window.location.pathname
@@ -70,7 +73,7 @@ class App extends Component {
       '/': (
         <Fragment>
           <SideBar user={this.state.user} />
-          {/* <Main user={this.state.userInfo} conversationInfo={this.state.selectedConversation} /> */}
+          <Main user={this.state.userInfo} conversationInfo={this.state.selectedConversation} />
         </Fragment>
       )
     }

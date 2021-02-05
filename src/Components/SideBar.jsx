@@ -2,7 +2,7 @@ import '../assets/css/SideBar.css'
 import { SearchBar } from './SearchBar'
 import { ConversationList } from '../Components/ConversationList'
 import { PathContext } from "../Context/PathContext";
-export function SideBar(props) {
+export function SideBar() {
 
     // user info to load profile
     // 'select' func used to select specific conversation

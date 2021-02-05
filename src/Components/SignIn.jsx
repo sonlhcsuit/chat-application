@@ -39,7 +39,7 @@ export class SignInComponent extends Component {
                     // this.props.setUser(this.state.user)
                     this.props.context.setUser(this.state.user)
 
-                    // localStorage.setItem('user', JSON.stringify(this.state.user))
+                    localStorage.setItem('user', JSON.stringify(this.state.user))
                     // to navigate to home page & trigge popstate event - for render
                     window.history.pushState(null, null, '/')
                     window.dispatchEvent(new PopStateEvent('popstate'))

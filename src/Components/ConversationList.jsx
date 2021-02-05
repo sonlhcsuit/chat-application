@@ -8,42 +8,42 @@ export class ConversationList extends React.Component {
         this.state = {
             selected: 0,
             conversationList: [],
-            isSubscribed: false
+            isSubscribed: false,
+            selected: null
 
         }
-        this.select = this.select.bind(this)
+        // this.select = this.select.bind(this)
     }
-    componentDidUpdate() {
+    componentDidMount() {
         const loggedUser = this.props.user
         console.log(loggedUser)
-        // if (loggedUser && !this.state.isSubscribed) {
-        //     getConversationsAndParticipants(loggedUser.id)
-        //         .then(convers => {
-        //             console.log(convers)
-        //             this.setState({
-        //                 conversationList: convers,
-        //                 isSubscribed: true
-        //             })
-        //         })
-        // }
-
-
+        if (loggedUser && !this.state.isSubscribed) {
+            getConversationsAndParticipants(loggedUser.id)
+                .then(convers => {
+                    console.log(convers)
+                    this.setState({
+                        conversationList: convers,
+                        isSubscribed: true,
+                        selected: convers[0].conversationId
+                    })
+                })
+        }
     }
-    select(indx) {
-        this.props.select(this.state.conversationList[indx])
-
-        this.setState({ selected: indx })
+    select = (id) => {
+        this.setState({selected:id})
     }
     render() {
         const loggedUser = this.props.user
+
         let conversations = this.state.conversationList.map((conversation, indx) => {
+            const { conversationId, participants } = conversation
             return (
                 <Conversation key={indx}
                     user={loggedUser.userId}
-                    id={conversation.conversationId}
-                    name={conversation.participants.name}
-                    image={conversation.participants.avatar} lastmes="12 hours ago"
-                    selected={indx === this.state.selected} select={() => this.select(indx)}
+                    id={conversationId}
+                    name={participants.name}
+                    image={participants.avatar} lastmes="12 hours ago"
+                    selected={conversationId === this.state.selected} select={() => this.select(conversationId)}
                 />
             )
         })

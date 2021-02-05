@@ -2,8 +2,10 @@ import { Fragment, Component } from 'react';
 import '../assets/css/SignIn.css'
 import { Modal } from './Modal'
 import { signInUltis } from '../ultis/userUltis'
-import {Link} from './Link'
-export class SignIn extends Component {
+import { Link } from './Link'
+import { withPathContext } from "../Context/PathContext";
+
+export class SignInComponent extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -34,9 +36,12 @@ export class SignIn extends Component {
             <Modal cancel={() => {
                 this.setState({ notifMessage: '' })
                 if (this.state.notifMessage === 'Sign In success') {
-                    localStorage.setItem('user', JSON.stringify(this.state.user))
+                    // this.props.setUser(this.state.user)
+                    this.props.context.setUser(this.state.user)
+
+                    // localStorage.setItem('user', JSON.stringify(this.state.user))
                     // to navigate to home page & trigge popstate event - for render
-                    window.history.pushState(null,null,'/')
+                    window.history.pushState(null, null, '/')
                     window.dispatchEvent(new PopStateEvent('popstate'))
                 }
             }}>
@@ -73,11 +78,10 @@ export class SignIn extends Component {
                     modal
                 }
             </Fragment >
-
-
         )
 
     }
 
 }
-// export default 
+const SignIn = withPathContext(SignInComponent)
+export { SignIn }

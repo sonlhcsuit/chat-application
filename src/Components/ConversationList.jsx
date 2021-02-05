@@ -15,17 +15,17 @@ export class ConversationList extends React.Component {
     }
     componentDidUpdate() {
         const loggedUser = this.props.user
-
-        if (loggedUser && !this.state.isSubscribed) {
-            getConversationsAndParticipants(loggedUser.id)
-                .then(convers => {
-                    console.log(convers)
-                    this.setState({
-                        conversationList: convers,
-                        isSubscribed: true
-                    })
-                })
-        }
+        console.log(loggedUser)
+        // if (loggedUser && !this.state.isSubscribed) {
+        //     getConversationsAndParticipants(loggedUser.id)
+        //         .then(convers => {
+        //             console.log(convers)
+        //             this.setState({
+        //                 conversationList: convers,
+        //                 isSubscribed: true
+        //             })
+        //         })
+        // }
 
 
     }

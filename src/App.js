@@ -11,71 +11,80 @@ import { PathContext } from './Context/PathContext'
 
 let availableRoute = ['/signin', '/signup', '/',]
 
-
-
 class App extends Component {
   constructor(props) {
     super(props)
-    // const user = JSON.parse(localStorage.getItem('user'))
+    // if user are not logged, navigate to /signin
+    let path = window.location.pathname
+    console.log(path)
+    if (availableRoute.indexOf(path) === -1) path = '/'
+    switch (path) {
+      case '/signin':
+        if (this.isLoggedIn()) path = '/'
+        break;
+      case '/':
+        if (!this.isLoggedIn()) path = '/signin'
+        break;
+      default:
+        break;
+    }
+    if (path != window.location.pathname) window.history.pushState(null,null,path)
     this.state = {
-      at: '/',
+      path: path,
       // user: user.name,
       user: {},
       selectedConversation: null,
-
-      navigate: this.navigate
+      navigate: this.navigate,
+      setUser:this.setUser,
     }
+  }
+  setUser=(user)=>{
+    this.setState({user:user})
   }
   navigate = (path) => {
     window.history.pushState(null, null, path)
     window.dispatchEvent(new PopStateEvent('popstate'))
-
   }
-  componentDidMount() {
-    window.addEventListener('popstate', (e) => {
-      e.preventDefault()
-      this.forceUpdate()
-    })
-  }
-
-  // selectConversation = (conversation) => {
-  //   this.setState({ selectedConversation: conversation })
-  // }
   isLoggedIn() {
     const user = localStorage.getItem('user')
     return user
   }
-  // componentDidMount() {
-  //   // or fetching data from here
-  //   if (localStorage.getItem('user') !== null) this.setState({ user: JSON.parse(localStorage.getItem('user')) })
-  // }
+  componentDidMount() {
+    // set up routing
+    window.addEventListener('popstate', (e) => {
+      e.preventDefault()
+      this.setState({ path: window.location.pathname })
+    })
+    
+  }
+  // and fetching data from here
+  // if (localStorage.getItem('user') !== null) this.setState({ user: JSON.parse(localStorage.getItem('user')) })
   render() {
-    // If user are at home and didnt logged in , navigate to sign in 
-    const path = window.location.pathname
-    // if (this.state.at === '/' && !this.isLoggedIn()) {
-    //   this.navigate('/signin')
-    // }
 
-    // let option = {
-    //   '/signin': <SignIn navigateToHome={() => this.navigateTo('home')} navigateToForgotPassword={() => this.navigateTo('forgot')} navigateToSignUp={() => this.navigateTo('signup')} />,
-    //   '/signup': <SignUp navigateToSignIn={() => this.navigateTo('signin')} />,
-    //   // 'forgot': <ForgotPassword navigateToSignIn={() => this.navigateTo('signin')} navigateToSignUp={() => this.navigateTo('signup')} />,
-    //   '/': (
-    //     <Fragment>
-    //       <SideBar user={this.state.user} select={this.selectConversation} />
-    //       <Main user={this.state.userInfo} conversationInfo={this.state.selectedConversation} />
-    //     </Fragment>
-    //   )
-    // }
-    // console.log(this.state)
-    // return (
-    //   <div className="container row">
-    //     {
-    //       option[path]
-    //     }
-    //   </div>
-    // )
+    let path = window.location.pathname
+    console.log(`Render ${path}`)
+    let option = {
+      '/signin': <SignIn />,
+      '/signup': <SignUp navigateToSignIn={() => this.navigateTo('signin')} />,
+      // 'forgot': <ForgotPassword navigateToSignIn={() => this.navigateTo('signin')} navigateToSignUp={() => this.navigateTo('signup')} />,
+      '/': (
+        <Fragment>
+          <SideBar user={this.state.user} />
+          {/* <Main user={this.state.userInfo} conversationInfo={this.state.selectedConversation} /> */}
+        </Fragment>
+      )
+    }
 
+    return (
+      <div className="container row">
+        <PathContext.Provider value={this.state}>
+          {
+            option[this.state.path]
+          }
+        </PathContext.Provider>
+
+      </div>
+    )
   }
 }
 export default App;

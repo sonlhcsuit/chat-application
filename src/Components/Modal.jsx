@@ -19,7 +19,6 @@ export function Modal(props) {
                 </div>
                 <div className="modal-footer">
                     <input type="button" value="Cancel" onClick={(e) => cancel(e)} />
-
                 </div>
             </div>
         </div>

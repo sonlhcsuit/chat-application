@@ -21,7 +21,7 @@ export class MessagesContainer extends React.Component {
         console.log('did dupdate')
         if(this.props.conversationInfo.conversationId != this.state.conversationId){
             // newly subscribe
-            subscribeConversation1(this.props.conversationInfo.conversationId,(data)=>{
+            subscribeConversation(this.props.conversationInfo.conversationId,(data)=>{
                 console.log(data.content)
             })
             

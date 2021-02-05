@@ -1,9 +1,9 @@
-import React from 'react';
+import {Component,Fragment} from 'react';
 import '../assets/css/SignUp.css'
 import { signUpUltis } from '../ultis/userUltis'
 import { Modal } from './Modal'
-
-export class SignUp extends React.Component {
+import { Link } from "./Link";
+export class SignUp extends Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -61,7 +61,7 @@ export class SignUp extends React.Component {
 
             </Modal> : null
         return (
-            <>
+            <Fragment>
                 <form className="signup-cont" onKeyDown={(e) => e.key === 'Enter' ? this.handleSubmit() : null}>
                     <div className="signup-comp title">
                         <h1>Sign Up</h1>
@@ -92,7 +92,11 @@ export class SignUp extends React.Component {
                             <input type="checkbox" checked={this.state.agree} onChange={(e) => this.handleChange(e, 'agree')} />
                             <label htmlFor="">I agree for the terms and conditions</label>
                         </div>
-                        <a href="/signin">Sign In</a>
+                        <Link path="/signin">
+                            <p>
+                            Sign In
+                            </p>
+                        </Link>
                     </div>
                     <div className="signup-comp">
                         <input type="button" value="Sign Up" onClick={this.handleSubmit} />
@@ -101,7 +105,7 @@ export class SignUp extends React.Component {
                 {
                     modal
                 }
-            </>
+            </Fragment>
         )
     }
 

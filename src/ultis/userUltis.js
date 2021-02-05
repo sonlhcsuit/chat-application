@@ -3,7 +3,8 @@ import { db } from './firebase.init'
 //sign out function
 export function signOutUltis() {
     localStorage.clear()
-    window.location.reload(false)
+    window.history.pushState(null,null,'/signin')
+    window.dispatchEvent(new PopStateEvent('popstate'))
 }
 export function signUpUltis({
     email,

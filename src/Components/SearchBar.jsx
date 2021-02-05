@@ -1,12 +1,12 @@
 import '../assets/css/SearchBar.css'
-import { signOut } from '../Controllers/Controllers'
+import { signOutUltis } from '../ultis/userUltis'
 function Profile(props) {
     let userInfo = props.userInfo
     return (
         <div className="profile-area">
-            <img className="thumb" src={userInfo.avatar || 'https://image.flaticon.com/icons/png/512/21/21104.png'} alt="avatar" />
+            <img className="thumb" src={userInfo?.avatar || 'https://image.flaticon.com/icons/png/512/21/21104.png'} alt="avatar" />
             <h2>Mindx Chat</h2>
-            <i className="fal fa-sign-out" style={{ cursor: 'pointer' }} onClick={signOut}></i>
+            <i className="fal fa-sign-out" style={{ cursor: 'pointer' }} onClick={signOutUltis}></i>
         </div>
     )
 }

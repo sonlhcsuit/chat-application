@@ -1,6 +1,6 @@
 import '../assets/css/ChatInput.css'
 import { Component } from 'react'
-import { sendMessage } from '../Controllers/Controllers'
+import { sendMessage } from '../ultis/messengerUltis'
 //where you enter text
 export class ChatInput extends Component {
     constructor(props) {

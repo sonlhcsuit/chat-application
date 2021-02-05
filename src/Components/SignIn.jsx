@@ -1,7 +1,7 @@
-
 import React from 'react';
 import '../assets/css/SignIn.css'
-import { signIn } from '../Controllers/Controllers'
+import { Modal } from './Modal'
+import { signInUltis } from '../ultis/userUltis'
 
 export class SignIn extends React.Component {
     constructor(props) {
@@ -9,20 +9,19 @@ export class SignIn extends React.Component {
         this.state = {
             username: '',
             password: '',
+            notifMessage: ''
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSubmit() {
-        signIn(this.state.username, this.state.password)
-            .then((userInfo) => {
-                localStorage.setItem('userId', userInfo.id)
-                localStorage.setItem('avatar', userInfo.avatar)
-                localStorage.setItem('name', userInfo.name)
-                this.props.navigateToHome()
+        signInUltis(this.state)
+            .then(val => {
+                this.setState({ user: val })
+                this.setState({ notifMessage: 'Sign In success' })
             })
-            .catch(err => {
-                console.error(err)
+            .catch(er => {
+                this.setState({ notifMessage: er.message })
             })
     }
     handleChange(e, type) {
@@ -30,34 +29,45 @@ export class SignIn extends React.Component {
         if (type === 'username') this.setState({ username: e.target.value })
     }
     render() {
+        const modal = this.state.notifMessage ?
+            <Modal cancel={() => {
+                this.setState({ notifMessage: '' })
+                if (this.state.notifMessage === 'Sign In success') {
+                    localStorage.setItem('user', JSON.stringify(this.state.user))
+                    window.location.assign('/')
+                }
+            }}>
+                <p>
+                    {this.state.notifMessage}
+                </p>
+            </Modal> : null
         return (
-            <form className="signin-area" onKeyDown={(e) => { if (e.key == 'Enter') this.handleSubmit() }}>
-                <div className="signin-comp title">
-                    <h1>Sign In</h1>
-                </div>
-                <div className="signin-comp">
-                    <label htmlFor="">Username</label>
-                    <input type="text" name="" id="username" onChange={(e) => this.handleChange(e, 'username')} placeholder="Enter username" />
-                </div>
-
-                <div className="signin-comp">
-                    <label htmlFor="">Password</label>
-                    <input type="password" name="" id="password" onInput={(e) => this.handleChange(e, 'password')} placeholder="Enter password" />
-
-                </div>
-                <div className="signin-comp opt">
-                    <small>
-                        <a onClick={this.props.navigateToForgotPassword}>Forgot Password?</a>
-                    </small>
-                    <small onClick={this.props.navigateToSignUp}>
-                        <a>Sign Up</a>
-                    </small>
-                </div>
-                <div className="signin-comp">
-                    <input type="button" value="Sign In" onClick={this.handleSubmit}  />
-
-                </div>
-            </form >
+            <>
+                <form className="signin-cont border" onKeyDown={(e) => e.key === 'Enter' ? this.handleSubmit() : null}>
+                    <div className="signin-comp title">
+                        <h1>Sign In</h1>
+                        <small>Please sign in for better experience</small>
+                    </div>
+                    <div className="signin-comp">
+                        <label htmlFor="">Username</label>
+                        <input type="text" name="" id="username" onChange={(e) => this.handleChange(e, 'username')} placeholder="Enter your username or email" />
+                    </div>
+                    <div className="signin-comp">
+                        <label htmlFor="">Password</label>
+                        <input type="password" name="" id="password" onInput={(e) => this.handleChange(e, 'password')} placeholder="Enter your password" />
+                    </div>
+                    <div className="signin-comp opt ">
+                        {/* <a href="/forgot" >Forgot Password?</a> */}
+                        <a href="/signup" >Sign Up</a>
+                    </div>
+                    <div className="signin-comp">
+                        <input type="button" value="Sign In" onClick={this.handleSubmit} />
+                    </div>
+                </form >
+                {
+                    modal
+                }
+            </>
         )
     }
 

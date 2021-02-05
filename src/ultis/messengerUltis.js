@@ -9,26 +9,22 @@ export function sendMessage(message) {
         })
 }
 // listen query realtime
-export function subscribeConversation(conversationId, callback) {
-    console.log(conversationId)
-    // let b = 0
-    return db.collection('messages').where('conversationId', '==', conversationId)
-        .onSnapshot(snapshot => {
-            snapshot.docChanges().forEach(change => {
-                if (change.type === 'added') {
-                    // b+=1
-                    // console.log(b)
-                    callback(change.doc.data())
-                    window.scrollBy(0, 100)
-                }
-            })
-        })
-}
-//sign out function
-export function signOut() {
-    localStorage.clear()
-    window.location.reload(false)
-}
+// export function subscribeConversation(conversationId, callback) {
+//     console.log(conversationId)
+//     // let b = 0
+//     return db.collection('messages').where('conversationId', '==', conversationId)
+//         .onSnapshot(snapshot => {
+//             snapshot.docChanges().forEach(change => {
+//                 if (change.type === 'added') {
+//                     // b+=1
+//                     // console.log(b)
+//                     callback(change.doc.data())
+//                     window.scrollBy(0, 100)
+//                 }
+//             })
+//         })
+// }
+
 
 
 export function getConversationOf(conversationId) {
@@ -158,47 +154,12 @@ export function getConversationsAndParticipants(userId) {
             })
         })
 }
-export function subscribeConversation1(converId, listener) {
+export function subscribeConversation(converId, listener) {
     db.collection('messages').where('conversationId', '==', converId)
         .onSnapshot(observer => {
-
             observer.docChanges().forEach(doc => {
                 if (doc.type === 'added') listener(doc.doc.data())
             })
 
         })
-}
-
-
-// -----------------------------------------------------------------------//
-
-
-
-
-
-
-export function signIn(username, password) {
-    return new Promise((resolve, reject) => {
-        db.collection('users')
-            .where('username', '==', username)
-            .where('password', '==', password)
-            .limit(1)
-            .get()
-            .then((docs) => {
-                if (docs.empty) {
-                    reject('username or password does not match!')
-                } else {
-                    let user;
-                    docs.forEach(doc => {
-                        user = { ...doc.data(), id: doc.id }
-
-                    })
-
-                    resolve(user)
-                }
-            })
-    })
-}
-export function signUp() {
-
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import '../assets/css/MessagesContainer.css'
 import { Message } from './Message'
-import { subscribeConversation,subscribeConversation1 } from '../ultis/messengerUltis'
+import { subscribeConversation } from '../ultis/messengerUltis'
 export class MessagesContainer extends React.Component {
     constructor(props) {
         super(props)

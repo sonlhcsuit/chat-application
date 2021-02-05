@@ -1,6 +1,6 @@
 import React from 'react'
 import { Conversation } from './Conversation'
-import { getConversationsInfoOf, getUserInfo, getConversationsAndParticipants } from '../Controllers/Controllers'
+import { getConversationsInfoOf, getUserInfo, getConversationsAndParticipants } from '../ultis/messengerUltis'
 import '../assets/css/ConversationList.css'
 export class ConversationList extends React.Component {
     constructor(props) {

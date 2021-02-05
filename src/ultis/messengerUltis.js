@@ -8,22 +8,6 @@ export function sendMessage(message) {
             console.log(er)
         })
 }
-// listen query realtime
-// export function subscribeConversation(conversationId, callback) {
-//     console.log(conversationId)
-//     // let b = 0
-//     return db.collection('messages').where('conversationId', '==', conversationId)
-//         .onSnapshot(snapshot => {
-//             snapshot.docChanges().forEach(change => {
-//                 if (change.type === 'added') {
-//                     // b+=1
-//                     // console.log(b)
-//                     callback(change.doc.data())
-//                     window.scrollBy(0, 100)
-//                 }
-//             })
-//         })
-// }
 
 
 
@@ -47,21 +31,39 @@ export function getConversation(conversationId) {
 }
 
 export function getConversationsInfoOf(userId) {
-    return db.collection('conversations').where('userIds', 'array-contains', userId).get()
+    return db.collection('conversations').where('users', 'array-contains', userId).get()
         .then(docs => {
             let data = []
             docs.forEach(doc => {
                 let conversation = doc.data()
-                let target = conversation.userIds.join('')
+                let target = conversation.users.join('')
                 target = target.replace(userId, '')
                 data.push({
                     conversationId: doc.id,
                     target: target,
-                    avatar: doc.data().avatar,
-                    name: doc.data().name
                 })
             })
             return data
+        })
+        .then(docs => {
+
+            let conversations = docs.map(doc => {
+                return new Promise((resolve, reject) => {
+                    getUserInfo(doc.target)
+                        .then(data => {
+                            resolve({
+                                conversationId: doc.conversationId,
+                                target: data,
+                                messages:[]
+                            })
+                        })
+                        .catch(error => {
+                            console.error(error)
+                            reject(error)
+                        })
+                })
+            })
+            return Promise.all(conversations)
         })
         .catch(er => {
             console.error(er)
@@ -70,19 +72,19 @@ export function getConversationsInfoOf(userId) {
 
 // -----------------------------------------------------------------------//
 
+
 export function getUserInfo(userId) {
-    return db.collection('users').doc(userId).get().then(doc => {
-
-
-        return {
-            id: doc.id,
-            ...doc.data()
-        }
-    })
+    return db.collection('users').doc(userId).get()
+        .then(doc => {
+            return {
+                id: userId,
+                ...doc.data()
+            }
+        })
         .then(user => {
             delete user.password
-            // console.log(user)
             return user
+
         })
         .catch(error => {
             console.error(error)
@@ -136,7 +138,8 @@ export function getConversationsAndParticipants(userId) {
                     getUserInfo(conver.participants[0]).then(user => {
                         resolve({
                             conversationId: conver.conversationId,
-                            participants: user
+                            participants: user,
+                            
                         })
                     })
                         .catch(error => {
@@ -154,11 +157,11 @@ export function getConversationsAndParticipants(userId) {
             })
         })
 }
-export function subscribeConversation(converId, listener) {
-    db.collection('messages').where('conversationId', '==', converId)
-        .onSnapshot(observer => {
-            observer.docChanges().forEach(doc => {
-                if (doc.type === 'added') listener(doc.doc.data())
+export function subscribeConversation(converId, subscriber) {
+    return db.collection('messages').where('conversationId', '==', converId)
+        .onSnapshot(observables => {
+            observables.docChanges().forEach(doc => {
+                if (doc.type === 'added') subscriber(doc.doc.data())
             })
 
         })

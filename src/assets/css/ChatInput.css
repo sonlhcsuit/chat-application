@@ -14,12 +14,13 @@
     flex-grow: 1;
     border-radius: 20px;
     /* border: 1px solid lightgrey; */
-    background-color: #323232;
-    color: white;
+    
+    background-color: #ececec;
+    color: black;
     border: none;
 }
 .chat-input-text::placeholder{
-    color: #646464;
+    color: #323232;
 }
 .chat-input-btn{
     margin: 10px; 

@@ -6,31 +6,30 @@ export class ConversationList extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-            selected: 0,
             conversationList: [],
             isSubscribed: false,
-            selected: null
-
         }
         // this.select = this.select.bind(this)
     }
     componentDidMount() {
         const loggedUser = this.props.user
-        console.log(loggedUser)
+        // console.log(loggedUser)
         if (loggedUser && !this.state.isSubscribed) {
             getConversationsAndParticipants(loggedUser.id)
                 .then(convers => {
-                    console.log(convers)
+                    // console.log(convers)
                     this.setState({
                         conversationList: convers,
                         isSubscribed: true,
-                        selected: convers[0].conversationId
+                    }, () => {
+                        // select the first one
+                        this.props.setSelected(convers[0].conversationId)
                     })
                 })
         }
     }
     select = (id) => {
-        this.setState({selected:id})
+        this.props.setSelected(id)
     }
     render() {
         const loggedUser = this.props.user
@@ -43,7 +42,7 @@ export class ConversationList extends React.Component {
                     id={conversationId}
                     name={participants.name}
                     image={participants.avatar} lastmes="12 hours ago"
-                    selected={conversationId === this.state.selected} select={() => this.select(conversationId)}
+                    selected={conversationId === this.props.selected} select={() => this.select(conversationId)}
                 />
             )
         })

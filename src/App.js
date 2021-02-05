@@ -22,7 +22,7 @@ class App extends Component {
 
     switch (path) {
       case '/signin':
-        if (this.isLoggedIn())path = '/'
+        if (this.isLoggedIn()) path = '/'
         break;
       case '/':
         if (!this.isLoggedIn()) path = '/signin'
@@ -32,24 +32,29 @@ class App extends Component {
     }
 
     if (path != window.location.pathname) window.history.pushState(null, null, path)
-    
+
     this.state = {
       path: path,
       user: user,
+      selected: '',
+
       navigate: this.navigate,
       setUser: this.setUser,
+      setSelected: this.setSelected
     }
   }
-
+  setSelected = (id) => {
+    this.setState({ selected: id })
+  }
   setUser = (user) => {
     this.setState({ user: user })
   }
-  
+
   navigate = (path) => {
     window.history.pushState(null, null, path)
     window.dispatchEvent(new PopStateEvent('popstate'))
   }
-  
+
   isLoggedIn() {
     return localStorage.getItem('user')
   }
@@ -73,7 +78,7 @@ class App extends Component {
       '/': (
         <Fragment>
           <SideBar user={this.state.user} />
-          <Main user={this.state.userInfo} conversationInfo={this.state.selectedConversation} />
+          <Main user={this.state.user} />
         </Fragment>
       )
     }

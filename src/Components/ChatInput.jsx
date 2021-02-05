@@ -8,19 +8,22 @@ export class ChatInput extends Component {
         this.state = { content: '' }
     }
     handleEnter = (e) => {
-        let destination = this.props.userInfo.userId
-        // console.log(destination)
-        if (e.key == 'Enter') {
+        if (e.key === 'Enter') {
             let message = {
                 created: new Date().valueOf(),
-                belongTo: destination,
+                belongTo: this.props.user.id,
                 content: e.target.value,
                 type: 'text',
-                conversationId: this.props.conversationInfo.conversationId
+                conversationId: this.props.selected
             }
             // clear input chat
             sendMessage(message)
                 .then(() => {
+                    document.getElementById('mc').scroll({
+                        left: 0,
+                        top: 10000,
+                        behavior: 'auto' 
+                    })
                     this.setState({ content: '' })
                 })
 
